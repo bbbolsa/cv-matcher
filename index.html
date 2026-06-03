@@ -7,35 +7,48 @@
 <meta name="description" content="Optimizá tu búsqueda y postulate donde tenés más chances. Score ATS, puestos recomendados y tips para mejorar tu CV.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;500;600;700;800&family=Mona+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;500;600;700;800;900&family=Mona+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:       #0d0b10;
-  --bg2:      #141118;
-  --bg3:      #1c1822;
-  --bg4:      #231f2b;
-  --border:   rgba(255,255,255,0.07);
-  --border2:  rgba(255,255,255,0.13);
-  --text:     #f2edf8;
-  --text2:    #9b8fac;
-  --text3:    #5a5066;
-  --pink:     #f03e8a;
-  --pink2:    #ff5fa0;
-  --pink3:    #c42f6e;
-  --pink-dim: rgba(240,62,138,0.13);
-  --pink-dim2:rgba(240,62,138,0.07);
-  --hot:      #ff2d6b;
-  --lavender: #c9b8f0;
-  --lav-dim:  rgba(201,184,240,0.1);
-  --green:    #3ddba0;
-  --green-dim:rgba(61,219,160,0.1);
-  --red:      #ff5e5e;
-  --red-dim:  rgba(255,94,94,0.1);
-  --amber:    #ffb347;
-  --r: 12px;
-  --r-sm: 8px;
-  --head: 'Cabinet Grotesk', sans-serif;
-  --body: 'Mona Sans', sans-serif;
+  --bg:        #f7f5fb;
+  --bg-nav:    #faf9fc;
+  --bg-card:   #ffffff;
+  --bg-steps:  #efedf5;
+  --bg3:       #f0edf8;
+  --bg4:       #e8e4f2;
+
+  --border:    #e2def0;
+  --border-nav:#ece9f4;
+  --border2:   #d4cfe8;
+
+  --text:      #1a1525;
+  --text2:     #6b617f;
+  --text3:     #9b91b0;
+
+  --pink:      #f03e8a;
+  --pink2:     #ff5fa0;
+  --pink3:     #c42f6e;
+  --pink-dim:  rgba(240,62,138,0.10);
+  --pink-dim2: rgba(240,62,138,0.05);
+
+  --green:     #0f9e6e;
+  --green-dim: rgba(15,158,110,0.10);
+  --red:       #d93b3b;
+  --red-dim:   rgba(217,59,59,0.09);
+  --amber:     #c97a00;
+  --amber-dim: rgba(201,122,0,0.10);
+  --lavender:  #7c6fa0;
+  --lav-dim:   rgba(124,111,160,0.10);
+
+  --r:     12px;
+  --r-sm:  8px;
+  --r-lg:  18px;
+  --head:  'Cabinet Grotesk', sans-serif;
+  --body:  'Mona Sans', sans-serif;
+
+  --shadow-sm: 0 1px 3px rgba(26,21,37,0.07), 0 1px 2px rgba(26,21,37,0.04);
+  --shadow:    0 4px 16px rgba(26,21,37,0.08), 0 1px 4px rgba(26,21,37,0.04);
+  --shadow-lg: 0 8px 32px rgba(26,21,37,0.10), 0 2px 8px rgba(26,21,37,0.05);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,65 +64,116 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* noise texture overlay */
+/* Subtle dot pattern background */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: radial-gradient(circle, rgba(124,111,160,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+}
+
+/* Gradient blobs */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(240,62,138,0.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-bottom {
+  position: fixed;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,111,160,0.08) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .container { max-width: 700px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
 /* ── HEADER ── */
-header { padding: 28px 0 22px; margin-bottom: 44px; }
+header {
+  padding: 20px 0 18px;
+  margin-bottom: 40px;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border-nav);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 .header-inner { display: flex; align-items: center; justify-content: space-between; }
+
+/* LOGO */
 .logo {
   font-family: var(--head);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.5px;
   display: flex; align-items: center; gap: 9px;
+  text-decoration: none;
 }
 .logo-mark {
-  width: 28px; height: 28px;
-  background: linear-gradient(135deg, var(--pink), var(--hot));
+  width: 30px; height: 30px;
+  background: var(--pink);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(240,62,138,0.35);
 }
+.logo-mark svg { width: 17px; height: 17px; }
 .logo-text { color: var(--text); }
-.logo-sub { color: var(--text3); font-weight: 400; }
+.logo-her { color: var(--pink); }
+
+.header-right { display: flex; align-items: center; gap: 10px; }
 .header-tag {
   font-size: 11px; font-weight: 600;
-  letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--text3);
-  background: var(--bg3);
-  border: 1px solid var(--border);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--lavender);
+  background: #f0edf8;
+  border: 1px solid #ddd6f0;
   padding: 4px 10px;
   border-radius: 99px;
 }
+.header-about {
+  font-size: 12px; font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: all 0.17s;
+}
+.header-about:hover { color: var(--pink); border-color: rgba(240,62,138,0.3); }
 
 /* ── HERO ── */
-.hero { margin-bottom: 48px; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--pink);
-  background: var(--pink-dim); border: 1px solid rgba(240,62,138,0.2);
-  padding: 4px 12px; border-radius: 99px; margin-bottom: 14px;
+.hero { margin-bottom: 40px; padding-top: 36px; }
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px;
 }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  padding: 4px 12px; border-radius: 99px; border: 1px solid;
+}
+.pill-pink  { background: #fde8f3; color: #b02565; border-color: #f7b8d8; }
+.pill-blue  { background: #e8f3fd; color: #185fa5; border-color: #b5d4f4; }
+.pill-green { background: #e8fdf4; color: #0f6e56; border-color: #9fe1cb; }
+
 .hero h1 {
   font-family: var(--head);
-  font-size: clamp(30px, 6vw, 50px);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
+  font-size: clamp(30px, 6vw, 52px);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -2px;
   color: var(--text);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .hero h1 em { font-style: normal; color: var(--pink); }
 .hero p {
@@ -120,17 +184,18 @@ header { padding: 28px 0 22px; margin-bottom: 44px; }
 /* ── STEP TABS ── */
 .steps-nav {
   display: flex; gap: 3px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
+  background: var(--bg-steps);
+  border: 1px solid #dddaf0;
   border-radius: var(--r);
-  padding: 4px; margin-bottom: 28px;
+  padding: 4px; margin-bottom: 24px;
   overflow-x: auto; scrollbar-width: none;
+  box-shadow: var(--shadow-sm);
 }
 .steps-nav::-webkit-scrollbar { display: none; }
 .step-tab {
   flex: 1; min-width: 0;
   display: flex; align-items: center; gap: 7px;
-  padding: 9px 12px; border-radius: 9px;
+  padding: 9px 12px; border-radius: var(--r-sm);
   border: none; background: transparent;
   color: var(--text3);
   font-family: var(--body); font-size: 13px; font-weight: 500;
@@ -139,12 +204,17 @@ header { padding: 28px 0 22px; margin-bottom: 44px; }
 }
 .step-tab .n {
   width: 22px; height: 22px; border-radius: 50%;
-  background: var(--bg3);
+  background: #dddaf0;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 700; flex-shrink: 0;
-  transition: all 0.18s;
+  transition: all 0.18s; color: var(--text3);
 }
-.step-tab.active { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
+.step-tab.active {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
 .step-tab.active .n { background: var(--pink); color: #fff; }
 .step-tab.done { color: var(--text2); }
 .step-tab.done .n { background: var(--pink-dim); color: var(--pink); }
@@ -153,17 +223,18 @@ header { padding: 28px 0 22px; margin-bottom: 44px; }
 
 /* ── CARDS ── */
 .card {
-  background: var(--bg2);
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 24px; margin-bottom: 16px;
+  border-radius: var(--r-lg);
+  padding: 26px; margin-bottom: 16px;
+  box-shadow: var(--shadow);
   animation: up 0.28s ease;
 }
-@keyframes up { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+@keyframes up { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 .card-title {
   font-family: var(--head);
-  font-size: 18px; font-weight: 700;
-  letter-spacing: -0.3px; color: var(--text);
+  font-size: 19px; font-weight: 700;
+  letter-spacing: -0.4px; color: var(--text);
   margin-bottom: 3px;
 }
 .card-sub { font-size: 13px; font-weight: 300; color: var(--text2); margin-bottom: 22px; }
@@ -176,27 +247,48 @@ label {
 }
 textarea, input[type=text], select {
   width: 100%;
-  background: var(--bg3); border: 1px solid var(--border);
-  border-radius: var(--r-sm); color: var(--text);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text);
   font-family: var(--body); font-size: 14px; font-weight: 300;
-  padding: 11px 14px; transition: border-color 0.18s;
+  padding: 11px 14px; transition: border-color 0.18s, box-shadow 0.18s;
   resize: vertical; -webkit-appearance: none;
 }
 textarea { min-height: 160px; line-height: 1.55; }
-textarea:focus, input:focus, select:focus { outline: none; border-color: var(--pink); }
+textarea:focus, input:focus, select:focus {
+  outline: none;
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(240,62,138,0.10);
+  background: var(--bg-card);
+}
 textarea::placeholder, input::placeholder { color: var(--text3); font-weight: 300; }
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%235a5066' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%239b91b0' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center;
   padding-right: 32px; cursor: pointer;
 }
-select option { background: var(--bg3); }
+select option { background: var(--bg-card); color: var(--text); }
 .field { margin-bottom: 16px; }
 
 /* ── INPUT TABS ── */
-.itabs { display: flex; gap: 3px; margin-bottom: 16px; background: var(--bg3); border-radius: var(--r-sm); padding: 3px; border: 1px solid var(--border); width: fit-content; }
-.itab { padding: 6px 14px; border-radius: 6px; border: none; background: transparent; color: var(--text3); font-family: var(--body); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.18s; }
-.itab.active { background: var(--bg2); color: var(--text); border: 1px solid var(--border2); }
+.itabs {
+  display: flex; gap: 3px; margin-bottom: 16px;
+  background: var(--bg3); border-radius: var(--r-sm);
+  padding: 3px; border: 1px solid var(--border);
+  width: fit-content;
+}
+.itab {
+  padding: 6px 14px; border-radius: 6px; border: none;
+  background: transparent; color: var(--text3);
+  font-family: var(--body); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.18s;
+}
+.itab.active {
+  background: var(--bg-card); color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
 
 /* ── FILE DROP ── */
 .drop {
@@ -220,8 +312,14 @@ select option { background: var(--bg3); }
   font-size: 13px; font-weight: 500; color: var(--text2);
   user-select: none;
 }
+.portal-pill:hover { border-color: var(--border2); }
 .portal-pill.on { border-color: var(--pink); background: var(--pink-dim); color: var(--text); }
-.pcheck { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--border2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.18s; font-size: 10px; }
+.pcheck {
+  width: 16px; height: 16px; border-radius: 4px;
+  border: 1.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.18s; font-size: 10px;
+}
 .portal-pill.on .pcheck { background: var(--pink); border-color: var(--pink); color: #fff; }
 
 /* ── PREFS ROW ── */
@@ -232,16 +330,25 @@ select option { background: var(--bg3); }
 .btn {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 11px 20px; border-radius: var(--r-sm);
-  border: 1px solid var(--border2); background: transparent;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
   color: var(--text); font-family: var(--body);
   font-size: 14px; font-weight: 500;
   cursor: pointer; transition: all 0.17s; white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 }
-.btn:hover { background: var(--bg3); }
+.btn:hover { background: var(--bg3); border-color: var(--border2); }
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: 0.38; cursor: not-allowed; transform: none; }
-.btn-pink { background: var(--pink); border-color: var(--pink); color: #fff; font-weight: 600; }
-.btn-pink:hover { background: var(--pink2); border-color: var(--pink2); }
+.btn-pink {
+  background: var(--pink); border-color: var(--pink);
+  color: #fff; font-weight: 600;
+  box-shadow: 0 2px 12px rgba(240,62,138,0.30);
+}
+.btn-pink:hover {
+  background: var(--pink2); border-color: var(--pink2);
+  box-shadow: 0 4px 18px rgba(240,62,138,0.38);
+}
 .btn-sm { padding: 7px 14px; font-size: 13px; }
 .btn-row { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
 
@@ -259,29 +366,30 @@ select option { background: var(--bg3); }
   padding: 5px 12px; border-radius: 99px;
   font-size: 12px; font-weight: 500; border: 1px solid;
 }
-.chip-lav { background: var(--lav-dim); border-color: rgba(201,184,240,0.2); color: var(--lavender); }
-.chip-pink { background: var(--pink-dim); border-color: rgba(240,62,138,0.2); color: var(--pink2); }
-.chip-green { background: var(--green-dim); border-color: rgba(61,219,160,0.2); color: var(--green); }
-.chip-red { background: var(--red-dim); border-color: rgba(255,94,94,0.2); color: var(--red); }
+.chip-lav  { background: var(--lav-dim);   border-color: rgba(124,111,160,0.2); color: var(--lavender); }
+.chip-pink { background: var(--pink-dim);  border-color: rgba(240,62,138,0.2);  color: var(--pink3); }
+.chip-green{ background: var(--green-dim); border-color: rgba(15,158,110,0.2);  color: var(--green); }
+.chip-red  { background: var(--red-dim);   border-color: rgba(217,59,59,0.2);   color: var(--red); }
+.chip-amber{ background: var(--amber-dim); border-color: rgba(201,122,0,0.2);   color: var(--amber); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
 
 /* ── PORTAL RESULT ROWS ── */
 .portal-row {
-  padding: 13px 14px; border-radius: var(--r-sm);
+  padding: 14px 16px; border-radius: var(--r-sm);
   border: 1px solid var(--border); background: var(--bg3);
-  margin-bottom: 8px; transition: border-color 0.15s;
+  margin-bottom: 8px; transition: all 0.15s;
 }
-.portal-row:hover { border-color: var(--border2); }
-.portal-row-name { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 7px; letter-spacing: 0.01em; }
+.portal-row:hover { border-color: var(--border2); box-shadow: var(--shadow-sm); }
+.portal-row-name { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 7px; }
 .portal-links { display: flex; flex-wrap: wrap; gap: 5px; }
 .plink {
   display: inline-flex; align-items: center; gap: 4px;
   padding: 4px 11px; border-radius: 99px;
   background: var(--pink-dim); border: 1px solid rgba(240,62,138,0.18);
-  color: var(--pink2); font-size: 12px; font-weight: 500;
+  color: var(--pink3); font-size: 12px; font-weight: 500;
   text-decoration: none; transition: background 0.15s;
 }
-.plink:hover { background: rgba(240,62,138,0.22); }
+.plink:hover { background: rgba(240,62,138,0.18); }
 
 /* ── SCORE ── */
 .score-block {
@@ -293,7 +401,7 @@ select option { background: var(--bg3); }
 @media (max-width: 460px) { .score-block { flex-direction: column; align-items: flex-start; gap: 14px; } }
 .score-ring { position: relative; width: 82px; height: 82px; flex-shrink: 0; }
 .score-ring svg { transform: rotate(-90deg); }
-.ring-bg { fill: none; stroke: var(--bg4); stroke-width: 6; }
+.ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
 .ring-fill { fill: none; stroke-width: 6; stroke-linecap: round; transition: stroke-dasharray 0.9s cubic-bezier(.4,0,.2,1); }
 .score-center {
   position: absolute; inset: 0;
@@ -312,9 +420,20 @@ select option { background: var(--bg3); }
   border-radius: var(--r-sm); font-size: 13px; font-weight: 300;
   color: var(--text); line-height: 1.6; margin-bottom: 18px;
 }
-.tip-box strong { color: var(--pink2); font-weight: 600; }
+.tip-box strong { color: var(--pink3); font-weight: 600; }
 
-.kw-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.warn-box {
+  padding: 14px 16px;
+  background: var(--amber-dim); border: 1px solid rgba(201,122,0,0.22);
+  border-radius: var(--r-sm); font-size: 13px; font-weight: 300;
+  color: var(--text); line-height: 1.6; margin-bottom: 18px;
+}
+.warn-box strong { color: var(--amber); font-weight: 600; }
+
+.kw-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+}
 
 .stat-item {
   display: flex; align-items: flex-start; gap: 10px;
@@ -324,6 +443,8 @@ select option { background: var(--bg3); }
   margin-bottom: 7px; line-height: 1.5;
 }
 .stat-ico { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.stat-item a { color: var(--pink3); text-decoration: none; font-weight: 500; }
+.stat-item a:hover { text-decoration: underline; }
 
 .tip-item {
   display: flex; align-items: flex-start; gap: 10px;
@@ -335,6 +456,15 @@ select option { background: var(--bg3); }
 .tip-item-body { flex: 1; }
 .tip-item-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
 .tip-item-desc { font-size: 12px; font-weight: 300; color: var(--text2); }
+
+/* ── SCORE FOOTER DISCLAIMER ── */
+.score-disclaimer {
+  margin-top: 16px; padding: 12px 14px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 12px; font-weight: 300; color: var(--text3);
+  line-height: 1.5; font-style: italic;
+}
 
 /* ── PROFILE PREVIEW ── */
 .profile-band {
@@ -349,24 +479,39 @@ select option { background: var(--bg3); }
   display: flex; align-items: center; justify-content: center;
   font-family: var(--head); font-size: 18px; font-weight: 800; color: #fff;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(240,62,138,0.25);
 }
 .profile-name { font-family: var(--head); font-size: 15px; font-weight: 700; color: var(--text); }
-.profile-level { font-size: 12px; color: var(--pink2); font-weight: 500; margin-top: 1px; }
+.profile-level { font-size: 12px; color: var(--pink3); font-weight: 500; margin-top: 1px; }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px; background: var(--border);
+  margin: 20px 0;
+}
 
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%) translateY(8px);
-  background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text); padding: 10px 18px;
+  background: var(--text); border: 1px solid rgba(255,255,255,0.1);
+  color: #fff; padding: 10px 18px;
   border-radius: var(--r-sm); font-size: 13px; font-weight: 500;
   z-index: 999; opacity: 0; transition: all 0.22s;
   white-space: nowrap; pointer-events: none; max-width: 90vw;
+  box-shadow: var(--shadow-lg);
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ── FOOTER ── */
-footer { padding: 44px 0 32px; border-top: 1px solid var(--border); margin-top: 64px; text-align: center; color: var(--text3); font-size: 12px; font-weight: 300; line-height: 1.8; }
+footer {
+  padding: 40px 0 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 64px;
+  text-align: center;
+  color: var(--text3);
+  font-size: 12px; font-weight: 300; line-height: 1.9;
+}
 footer a { color: var(--text2); text-decoration: none; }
 footer a:hover { color: var(--pink); }
 
@@ -374,25 +519,39 @@ footer a:hover { color: var(--pink); }
 
 @media (max-width: 480px) {
   .card { padding: 18px 16px; }
-  .hero h1 { letter-spacing: -1px; }
+  .hero h1 { letter-spacing: -1.2px; }
+  header { position: relative; }
 }
 </style>
 </head>
 <body>
+<div class="blob-bottom"></div>
 <div class="container">
 
   <header>
     <div class="header-inner">
-      <div class="logo">
-        <div class="logo-mark">✦</div>
-        <span class="logo-text">CV-matc<span style="color:var(--pink)">HER</span></span>
+      <a href="/" class="logo">
+        <div class="logo-mark">
+          <!-- Spark/star SVG logo -->
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2L11.8 8.2L18 10L11.8 11.8L10 18L8.2 11.8L2 10L8.2 8.2L10 2Z" fill="white"/>
+          </svg>
+        </div>
+        <span class="logo-text">CV-matc<span class="logo-her">HER</span></span>
+      </a>
+      <div class="header-right">
+        <a href="/sobre.html" target="_blank" class="header-about">Sobre este proyecto</a>
+        <span class="header-tag">Argentina · Beta</span>
       </div>
-      <span class="header-tag">Argentina · Beta</span>
     </div>
   </header>
 
   <div class="hero">
-    <div class="hero-eyebrow">✦ Gratis · Sin registro</div>
+    <div class="hero-pills">
+      <span class="hero-pill pill-pink">✦ Gratis</span>
+      <span class="hero-pill pill-blue">Sin registro</span>
+      <span class="hero-pill pill-green">⚡ IA en tiempo real</span>
+    </div>
     <h1>Optimizá tu búsqueda<br>y postulate donde<br>tenés más <em>chances</em> 😎</h1>
     <p>Analizá tu perfil, descubrí qué puestos buscar y calculá tu score ATS antes de postularte.</p>
   </div>
@@ -409,34 +568,11 @@ footer a:hover { color: var(--pink); }
   <div id="s1">
     <div class="card">
       <div class="card-title">Tu CV</div>
-      <div class="card-sub">Pegá el texto o subí el archivo. Cuanto más completo, mejor el análisis.</div>
+      <div class="card-sub">Pegá el texto de tu CV. Cuanto más completo, mejor el análisis.</div>
 
-      <div class="itabs">
-        <button class="itab active" onclick="setCVMode('text',this)">Pegar texto</button>
-        <button class="itab" onclick="setCVMode('file',this)">Subir archivo</button>
-      </div>
-
-      <div id="cv-text-mode">
-        <div class="field">
-          <label>Contenido del CV</label>
-          <textarea id="cv-input" placeholder="Ej: María García — Diseñadora UX/UI&#10;Figma, Adobe XD, Illustrator · 3 años de experiencia&#10;..."></textarea>
-        </div>
-      </div>
-
-      <div id="cv-file-mode" class="hidden">
-        <div class="field">
-          <label>Archivo</label>
-          <div class="drop" id="drop-area">
-            <input type="file" accept=".pdf,.doc,.docx,.txt" id="file-input" onchange="handleFile(event)">
-            <div class="drop-icon">📎</div>
-            <div class="drop-text"><strong>Elegí un archivo</strong> o arrastralo acá<br><span style="font-size:12px;color:var(--text3)">PDF, Word o TXT</span></div>
-          </div>
-          <div id="file-name" class="hidden" style="margin-top:8px;font-size:13px;color:var(--text2);"></div>
-        </div>
-        <div class="field">
-          <label>Texto del CV (podés editar)</label>
-          <textarea id="cv-file-text" placeholder="El texto de tu CV aparecerá acá..."></textarea>
-        </div>
+      <div class="field">
+        <label>Contenido del CV</label>
+        <textarea id="cv-input" placeholder="Ej: María García — Diseñadora UX/UI&#10;Figma, Adobe XD, Illustrator · 3 años de experiencia&#10;..."></textarea>
       </div>
 
       <div class="btn-row">
@@ -480,6 +616,24 @@ footer a:hover { color: var(--pink); }
             <option value="Santa Fe">Santa Fe</option>
             <option value="Mendoza">Mendoza</option>
             <option value="Tucumán">Tucumán</option>
+            <option value="Salta">Salta</option>
+            <option value="Entre Ríos">Entre Ríos</option>
+            <option value="Misiones">Misiones</option>
+            <option value="Chaco">Chaco</option>
+            <option value="Corrientes">Corrientes</option>
+            <option value="Santiago del Estero">Santiago del Estero</option>
+            <option value="San Juan">San Juan</option>
+            <option value="Jujuy">Jujuy</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="Neuquén">Neuquén</option>
+            <option value="Formosa">Formosa</option>
+            <option value="Chubut">Chubut</option>
+            <option value="San Luis">San Luis</option>
+            <option value="Catamarca">Catamarca</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="La Pampa">La Pampa</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+            <option value="Tierra del Fuego">Tierra del Fuego</option>
             <option value="Rosario">Rosario</option>
             <option value="remoto">Solo remoto</option>
           </select>
@@ -571,6 +725,10 @@ footer a:hover { color: var(--pink); }
           </div>
         </div>
 
+        <div id="warn-stuffing" class="warn-box hidden">
+          ⚠️ <strong>No te pases chamuyando.</strong> Un CV con keywords al palo puede parecer raro tanto para el ATS como para el recruiter. Lo importante es que lo que ponés sea verdad y suene natural. El 80–85% es el punto justo.
+        </div>
+
         <div class="tip-box" id="tip-box"></div>
 
         <div style="margin-bottom:14px;">
@@ -583,15 +741,24 @@ footer a:hover { color: var(--pink); }
         </div>
 
         <div id="cv-tips-section" class="hidden" style="margin-bottom:20px;">
-          <div class="kw-label" style="margin-bottom:10px;">Qué podés agregar a tu CV para subir el score</div>
+          <div class="kw-label" style="margin-bottom:10px;">Qué podés ajustar en tu CV</div>
           <div id="cv-tips-list"></div>
+          <div style="margin-top:12px;">
+            <button class="btn btn-pink btn-sm" onclick="generarCVMejorado()">Ver CV mejorado ✏️</button>
+            <div id="cv-mejor-load" class="loading hidden" style="margin-top:8px;">
+              <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+              Reescribiendo tu CV...
+            </div>
+          </div>
         </div>
 
-        <div>
-          <div class="kw-label" style="margin-bottom:10px;">¿Por qué importa el score ATS?</div>
-          <div class="stat-item"><span class="stat-ico">📊</span>Más del 75% de las empresas medianas y grandes en Argentina usan sistemas ATS para filtrar CVs antes de que lleguen a un reclutador humano.</div>
-          <div class="stat-item"><span class="stat-ico">⚡</span>Un CV con 70%+ de match tiene 3× más probabilidades de pasar el filtro automático, según estudios de Jobscan y TalentWorks.</div>
-          <div class="stat-item"><span class="stat-ico">🎯</span>Agregar las keywords faltantes al CV — si tenés esa experiencia — puede subir tu score considerablemente sin mentir.</div>
+        <div id="citas-section">
+          <div class="kw-label" style="margin-bottom:10px;">Por qué esto importa</div>
+          <div id="citas-list"></div>
+        </div>
+
+        <div class="score-disclaimer">
+          El score te ayuda a pasar el filtro, pero quien te da la entrevista es tu experiencia real. Un 95% sin experiencia relevante pierde contra un 75% con el background correcto.
         </div>
 
         <div class="btn-row" style="margin-top:20px;">
@@ -604,7 +771,8 @@ footer a:hover { color: var(--pink); }
 
   <footer>
     CV-matcHER · sin registro, sin publicidades, tus datos quedan en tu dispositivo.<br>
-    Powered by <a href="https://anthropic.com" target="_blank">Claude AI</a> · Hecho con ♥ en Argentina
+    Powered by <a href="https://anthropic.com" target="_blank">Claude AI</a> · Hecho con ♥ en Argentina ·
+    <a href="/sobre.html" target="_blank">Sobre este proyecto</a>
   </footer>
 </div>
 
@@ -613,26 +781,51 @@ footer a:hover { color: var(--pink); }
 <script>
 // ─── PORTALES ───────────────────────────────────────────
 const PORTALES = [
-  { id:'zonajobs', n:'Zona Jobs',
+  { id:'zonajobs',     n:'Zona Jobs',     domain:'zonajobs.com.ar',
     url:(t,pv,d)=>`https://www.zonajobs.com.ar/empleos-busqueda.html?q=${enc(t)}${pv?'&l='+enc(pv):''}` },
-  { id:'bumeran',  n:'Bumeran',
+  { id:'bumeran',      n:'Bumeran',       domain:'bumeran.com',
     url:(t,pv,d)=>`https://www.bumeran.com.ar/empleos-busqueda-${slug(t)}.html` },
-  { id:'linkedin', n:'LinkedIn',
+  { id:'linkedin',     n:'LinkedIn',      domain:'linkedin.com/jobs',
     url:(t,pv,d)=>`https://www.linkedin.com/jobs/search/?keywords=${enc(t)}&location=Argentina${d?'&f_TPR=r'+d*86400:''}` },
-  { id:'indeed',   n:'Indeed AR',
+  { id:'indeed',       n:'Indeed AR',     domain:'indeed.com',
     url:(t,pv,d)=>`https://ar.indeed.com/jobs?q=${enc(t)}&l=${enc('Argentina'+(pv?' '+pv:''))}${d?'&fromage='+d:''}` },
-  { id:'computrabajo', n:'Computrabajo',
+  { id:'computrabajo', n:'Computrabajo',  domain:'ar.computrabajo.com',
     url:(t,pv,d)=>`https://www.computrabajo.com.ar/ofertas-de-trabajo/ofertas-de-${slug(t)}` },
-  { id:'getonboard',   n:'Get on Board',
-    url:(t,pv,d)=>`https://www.getonbrd.com/jobs?q=${enc(t)}` },
-  { id:'workana',      n:'Workana',
-    url:(t,pv,d)=>`https://www.workana.com/jobs?language=es&search=${enc(t)}` },
-  { id:'argprograma',  n:'Arg. Programa',
-    url:(t,pv,d)=>`https://www.argentina.gob.ar/economia/programar` },
 ];
 
 const enc  = s => encodeURIComponent(s);
 const slug = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,'-');
+
+// Google search por portal
+function buildGoogleSearchURL(jobTitle, portalDomain, provincia, dateRange) {
+  const provPart = provincia && provincia !== 'remoto' ? ` "${provincia}"` : '';
+  const query = `site:${portalDomain} "${jobTitle}"${provPart}`;
+  const encodedQuery = encodeURIComponent(query);
+  const dateMap = { '1':'d', '7':'w', '14':'w', '30':'m' };
+  const tbsVal = dateRange && dateMap[dateRange] ? `&tbs=qdr:${dateMap[dateRange]}` : '';
+  return `https://www.google.com/search?q=${encodedQuery}${tbsVal}`;
+}
+
+// ─── CITAS (rotativas) ──────────────────────────────────
+const CITAS = [
+  { ico:'📊', txt:'Hasta el 75% de los candidatos nunca supera el filtro inicial de un ATS.', url:'https://blogs.psico-smart.com/blog-beyond-keywords-understanding-how-ats-algorithm-changes-impact-job-seekers-in-2024-184391', fuente:'Psico-smart' },
+  { ico:'⚡', txt:'El 73% de las decisiones de rechazo del ATS ocurren en los primeros 10 segundos, antes de cualquier revisión humana.', url:'https://www.edligo.net/job-search-tips/i-analyzed-1000-rejected-resumes-heres-what-ats-actually-sees-and-its-not-what-you-think/', fuente:'EDLIGO' },
+  { ico:'🎯', txt:'El 43% de los postulantes envía CVs que no coinciden lo suficiente con la descripción del puesto para pasar los filtros del ATS. (CareerBuilder, 2023)', url:'https://dev.to/sarah_m/45-resume-statistics-for-2026-data-backed-hg4', fuente:'DEV Community' },
+  { ico:'🔍', txt:'El 88% de los empleadores admitió que su ATS descarta candidatos altamente calificados porque no encajan exactamente con los criterios del puesto. (Harvard/Accenture, 2021)', url:'https://www.brianheger.com/hidden-workers-untapped-talent-harvard-business-school-and-accenture/', fuente:'Harvard/Accenture' },
+  { ico:'📈', txt:'Los candidatos que adaptan su CV para cada puesto ven un aumento del 30% en su tasa de callbacks. (Jobscan, 2023)', url:'https://www.resumly.ai/blog/using-ai-to-predict-which-resume-version-yields-higher-interview-callback-rates', fuente:'Resumly/Jobscan' },
+  { ico:'👻', txt:'El 39% de los candidatos citó la existencia de "ghost jobs" — puestos publicados que ya están cubiertos o nunca fueron reales — como uno de sus principales problemas. (iHire, 2025)', url:'https://www.ihire.com/resourcecenter/employer/pages/the-state-of-online-recruiting-2025', fuente:'iHire' },
+  { ico:'💼', txt:'Solo el 10% reporta éxito repetido con funcionalidades de "quick apply". El 41% nunca consiguió una entrevista usándolas.', url:'https://www.myperfectresume.com/career-center/careers/basics/job-search-behavior', fuente:'MyPerfectResume' },
+  { ico:'🤝', txt:'Candidatos que combinaron CVs optimizados con networking activo recibieron invitaciones a entrevista 3,2 veces más frecuentemente. (Indeed, 2025)', url:'https://blog.theinterviewguys.com/ats-resume-optimization/', fuente:'The Interview Guys' },
+];
+
+function renderCitasAleatorias(n = 3) {
+  const shuffled = [...CITAS].sort(() => Math.random() - 0.5).slice(0, n);
+  return shuffled.map(c => `
+    <div class="stat-item">
+      <span class="stat-ico">${c.ico}</span>
+      <span>${c.txt} <a href="${c.url}" target="_blank" rel="noopener">[${c.fuente}]</a></span>
+    </div>`).join('');
+}
 
 // ─── STATE ──────────────────────────────────────────────
 let S = {
@@ -647,15 +840,6 @@ function init() {
   try { const cv = localStorage.getItem('cvmatch_cv'); if(cv) document.getElementById('cv-input').value = cv; } catch(e){}
   renderPortalGrid();
   applyPrefs();
-
-  // drag/drop
-  const da = document.getElementById('drop-area');
-  ['dragenter','dragover'].forEach(e => da.addEventListener(e, ev=>{ ev.preventDefault(); da.classList.add('over'); }));
-  ['dragleave','drop'].forEach(e => da.addEventListener(e, ev=>{ ev.preventDefault(); da.classList.remove('over'); }));
-  da.addEventListener('drop', ev => {
-    const f = ev.dataTransfer.files[0];
-    if(f) handleFile({ target:{ files: ev.dataTransfer.files } });
-  });
 }
 
 // ─── NAVIGATION ─────────────────────────────────────────
@@ -670,34 +854,8 @@ function goTo(n) {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ─── CV MODE ─────────────────────────────────────────────
-function setCVMode(mode, btn) {
-  document.querySelectorAll('.itab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('cv-text-mode').classList.toggle('hidden', mode==='file');
-  document.getElementById('cv-file-mode').classList.toggle('hidden', mode==='text');
-}
-
-// ─── FILE ────────────────────────────────────────────────
-function handleFile(e) {
-  const f = e.target.files[0]; if(!f) return;
-  document.getElementById('file-name').textContent = '📎 '+f.name;
-  document.getElementById('file-name').classList.remove('hidden');
-  const r = new FileReader();
-  r.onload = ev => {
-    if(f.type==='text/plain') {
-      document.getElementById('cv-file-text').value = ev.target.result;
-    } else {
-      document.getElementById('cv-file-text').placeholder = 'Archivo detectado. Copiá el texto del documento y pegalo acá para mejor análisis.';
-    }
-  };
-  f.type==='text/plain' ? r.readAsText(f) : r.readAsDataURL(f);
-}
-
-// ─── API CALL (via Netlify function) ─────────────────────
+// ─── API CALL ────────────────────────────────────────────
 async function callClaude(messages, max_tokens=1200) {
-  console.log("VERSION NUEVA 123");
-
   const res = await fetch('/.netlify/functions/claude', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -721,15 +879,14 @@ function parseJSON(txt) {
 
 // ─── STEP 1: ANALIZAR CV ─────────────────────────────────
 async function analizarCV() {
-  const t = document.getElementById('cv-input').value.trim();
-  const ft = document.getElementById('cv-file-text').value.trim();
-  const cv = t||ft;
+  const cv = document.getElementById('cv-input').value.trim();
   if(!cv||cv.length<50) { toast('Pegá el contenido de tu CV primero'); return; }
 
   S.cvText = cv;
   try { localStorage.setItem('cvmatch_cv', cv.substring(0,5000)); } catch(e){}
 
-  setLoad('cv-load',true); document.getElementById('btn-analizar').disabled=true;
+  setLoad('cv-load',true);
+  document.getElementById('btn-analizar').disabled=true;
 
   try {
     const raw = await callClaude([{ role:'user', content:
@@ -754,7 +911,6 @@ ${cv.substring(0,3500)}` }], 900);
     const a = parseJSON(raw);
     S.analisis = a;
 
-    // render profile band
     const ini = (a.nombre||'C').charAt(0).toUpperCase();
     document.getElementById('profile-band').innerHTML = `
       <div class="profile-avatar">${ini}</div>
@@ -770,7 +926,8 @@ ${cv.substring(0,3500)}` }], 900);
     console.error(e);
     toast('Error: '+e.message);
   }
-  setLoad('cv-load',false); document.getElementById('btn-analizar').disabled=false;
+  setLoad('cv-load',false);
+  document.getElementById('btn-analizar').disabled=false;
 }
 
 // ─── STEP 2: PORTALES ────────────────────────────────────
@@ -817,7 +974,7 @@ function buildStep3() {
       <div class="portal-row">
         <div class="portal-row-name">${p.n}</div>
         <div class="portal-links">
-          ${titulos.map(t=>`<a href="${p.url(t,prov,fecha)}" target="_blank" rel="noopener" class="plink">${t} ↗</a>`).join('')}
+          ${titulos.map(t=>`<a href="${buildGoogleSearchURL(t, p.domain, prov, fecha)}" target="_blank" rel="noopener" class="plink">${t} ↗</a>`).join('')}
         </div>
       </div>`).join('');
 
@@ -830,34 +987,39 @@ async function calcularScore() {
   if(!oferta||oferta.length<80){ toast('Pegá la descripción completa de la oferta'); return; }
   if(!S.cvText){ toast('Primero analizá tu CV en el paso 1'); return; }
 
-  setLoad('score-load',true); document.getElementById('btn-score').disabled=true;
+  setLoad('score-load',true);
+  document.getElementById('btn-score').disabled=true;
   document.getElementById('score-result').classList.add('hidden');
 
   try {
     const raw = await callClaude([{ role:'user', content:
-      `Sos un sistema ATS experto y coach de carrera. Analizá la compatibilidad entre el CV y la oferta.
+      `Sos un sistema ATS experto. Analizá la compatibilidad entre el CV y la oferta con RIGOR. No infles el score para no herir al candidato — un score impreciso es más dañino que uno honesto.
+
 Respondé SOLO con JSON válido, sin markdown.
 
 {
   "score": número 0-100,
-  "veredicto": "Muy recomendado postularse" | "Postularse con ajustes" | "Perfil parcial" | "No recomendado por ahora",
-  "descripcion": "1-2 oraciones directas y útiles explicando el resultado",
-  "consejo": "1 consejo concreto y accionable (1 oración)",
+  "veredicto": string,
+  "descripcion": "1-2 oraciones directas y útiles",
+  "consejo": "1 consejo concreto (1 oración)",
   "keywords_match": ["kw1","kw2","kw3"],
   "keywords_faltantes": ["kw1","kw2","kw3"],
   "cv_tips": [
-    { "titulo": "nombre corto del tip", "descripcion": "cómo aplicarlo al CV basándote en la experiencia real que ya tiene el candidato — sé específico, no genérico" }
+    { "titulo": "nombre corto", "descripcion": "cómo aplicarlo basándote SOLO en experiencia ya existente en el CV" }
   ]
 }
 
-Reglas para cv_tips:
-- Máximo 4 tips
-- Solo sugerí cosas que el candidato PODRÍA tener según su experiencia ya existente en el CV (no inventar experiencia)
-- Ej: si tiene experiencia en diseño web → "Agregá 'responsive design' como skill si la aplicaste" 
-- Si el score ya es 85+ ponés máximo 2 tips pequeños
-- Sé directo y accionable, en segunda persona informal (vos)
+RANGOS Y MENSAJES para el campo 'veredicto':
+- score < 60: "Este puesto no es para vos" (el gap es demasiado grande)
+- score 60-69: "Podés postularte, pero ajustá antes" (hay competencia que te puede ganar)
+- score 70-79: "Estás en el mínimo competitivo" (con ajustes podés mejorar)
+- score 80-85: "Buen match" (altas chances de pasar el filtro)
+- score > 85: "Excelente match" (concentrate en la entrevista)
 
-Score: 85-100 excelente | 70-84 muy bueno | 55-69 parcial | 40-54 bajo | 0-39 muy diferente
+Reglas para cv_tips:
+- Si score < 60: devolvé cv_tips como array vacío []
+- Si score >= 60: máximo 4 tips, SOLO basados en experiencia real del CV
+- Nunca sugerir inventar experiencia
 
 CV:
 ${S.cvText.substring(0,2500)}
@@ -871,13 +1033,18 @@ ${oferta.substring(0,2500)}` }], 1200);
     console.error(e);
     toast('Error: '+e.message);
   }
-  setLoad('score-load',false); document.getElementById('btn-score').disabled=false;
+  setLoad('score-load',false);
+  document.getElementById('btn-score').disabled=false;
 }
 
 function renderScore(r) {
   const s = Math.max(0,Math.min(100,Math.round(r.score)));
   const circ = 2*Math.PI*34;
-  const color = s>=70 ? 'var(--green)' : s>=50 ? 'var(--amber)' : 'var(--red)';
+  let color;
+  if(s >= 80)      color = 'var(--green)';
+  else if(s >= 70) color = '#c4a100';
+  else if(s >= 60) color = 'var(--amber)';
+  else             color = 'var(--red)';
 
   document.getElementById('ring-arc').style.stroke = color;
   setTimeout(()=>{
@@ -891,13 +1058,18 @@ function renderScore(r) {
   document.getElementById('score-verdict').style.color = color;
   document.getElementById('score-desc').textContent = r.descripcion||'';
   document.getElementById('tip-box').innerHTML = `<strong>💡 Consejo:</strong> ${r.consejo}`;
+
+  // Anti-stuffing warning
+  document.getElementById('warn-stuffing').classList.toggle('hidden', s <= 90);
+
   document.getElementById('kw-match').innerHTML = (r.keywords_match||[]).map(k=>`<span class="chip chip-green">✓ ${k}</span>`).join('');
   document.getElementById('kw-miss').innerHTML = (r.keywords_faltantes||[]).map(k=>`<span class="chip chip-red">✗ ${k}</span>`).join('');
 
+  // Tips de CV (solo si score >= 60)
   const tips = r.cv_tips||[];
   const tipsSection = document.getElementById('cv-tips-section');
   const tipsList = document.getElementById('cv-tips-list');
-  if(tips.length > 0) {
+  if(tips.length > 0 && s >= 60) {
     tipsList.innerHTML = tips.map(t=>`
       <div class="tip-item">
         <div class="tip-item-icon">✏️</div>
@@ -910,6 +1082,46 @@ function renderScore(r) {
   } else {
     tipsSection.classList.add('hidden');
   }
+
+  // Citas rotativas
+  document.getElementById('citas-list').innerHTML = renderCitasAleatorias(s < 60 ? 3 : 2);
+}
+
+// ─── GENERAR CV MEJORADO ─────────────────────────────────
+async function generarCVMejorado() {
+  if(!S.cvText) { toast('No hay CV cargado'); return; }
+  const oferta = document.getElementById('oferta-input').value.trim();
+
+  setLoad('cv-mejor-load', true);
+
+  try {
+    const html = await callClaude([{ role:'user', content:
+      `Tomá este CV y reescribilo mejorando su presentación para el puesto descripto.
+Usá ÚNICAMENTE la experiencia y habilidades que ya aparecen en el CV original.
+No inventes nada. No agregues skills que no estén.
+Mejorá: verbos de acción, keywords relevantes al puesto, orden estratégico, claridad.
+
+Devolvé ÚNICAMENTE el HTML completo con estilos inline, listo para abrir en navegador.
+Tipografía limpia (Arial o Georgia), márgenes razonables, estructura clara, imprimible.
+Sin explicaciones, sin markdown, solo el HTML que empiece con <!DOCTYPE html>.
+
+CV ORIGINAL:
+${S.cvText.substring(0,3000)}
+
+${oferta ? 'PUESTO TARGET:\n'+oferta.substring(0,1000) : ''}` }], 2500);
+
+    const nueva = window.open('', '_blank');
+    if(nueva) {
+      nueva.document.write(html);
+      nueva.document.close();
+    } else {
+      toast('Habilitá los popups para ver el CV mejorado');
+    }
+  } catch(e) {
+    console.error(e);
+    toast('Error al generar el CV: '+e.message);
+  }
+  setLoad('cv-mejor-load', false);
 }
 
 function nuevaOferta() {
